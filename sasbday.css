@@ -1,0 +1,246 @@
+body { 
+  font-family: Arial, sans-serif;
+  padding-bottom: 50px;
+  background-image: linear-gradient(135deg,  rgba(178, 34, 34, 0.8), rgba(44, 44, 84, 0.8)), url(./img/bdimg1.avif);
+  background-size: cover;
+  background-position: top;
+  font-family: 'Arial', sans-serif;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: scroll;
+}
+
+.confetti {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity 2s ease-out;
+}
+
+.overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  text-align: center;
+  cursor: pointer;
+}
+
+.overlay h1 {
+  font-size: 3rem;
+  font-family: 'Courier New', Courier, monospace;
+  color: #fff;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+span {
+  animation: blinker 1s linear infinite;
+}
+@keyframes blinker{
+  50%{
+    opacity: 0;
+  }
+}
+
+#heading {
+  position: absolute;
+  top: 20px; /* Adjust to set how far from the top*/
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center; /* Ensure text is in the center even with multiple lines*/
+  font-size: 2rem;
+  color: antiquewhite;
+}
+
+.birthday-card {
+  position: relative;
+  left: 120px;
+  width: 300px;
+  height: 395px;
+  border: 10px solid salmon;
+  margin: 70px auto 0px auto;
+  box-shadow: inset 10px 0px 15px 0px rgba(0, 0, 0, 0.1);
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255),
+  rgba(255, 255, 255, 0.5)), url("./img/cake.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  animation-name: moveInLeft;
+  animation-duration: 2s;
+  animation-timing-function: ease-out;
+  animation-delay: 12s;
+  animation-fill-mode: backwards;
+}
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  80% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 100;
+    transform: translateX(0);
+  }
+}
+
+.text {
+  width: 80%;
+  height: 80%;
+  margin: auto;
+  font-family: 'Nobile', sans-serif;
+  font-weight: bold;
+}
+
+p {
+  font-size: 1em;
+  color: #331717;
+  list-style: 1.4;
+  font-style: italic;
+  text-align: center;
+  margin: 30px auto 0 auto;
+}
+
+
+.cover-outer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: -10px 0 0 -10px;
+  border: 10px solid salmon;
+  backface-visibility: hidden;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transform-origin: 0% 50%;
+  transform: perspective(800px) rotateY(0deg);
+  transition: all 0.8s ease-in-out;
+
+img {
+  box-shadow: 0px 6px 11px 7px rgba(0, 0, 0, 0.22);
+  border-radius: 5px;
+}
+}
+
+.cover-inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 10px solid salmon;
+  background-color: salmon;
+  margin: -10px 0px 0 -10px;
+  overflow: hidden;
+  backface-visibility: visible;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+  transform-style: preserve-3d;
+  transform-origin: 0% 50%; 
+  transform: perspective(800px) rotateY(0deg);
+  transition: all 0.8s ease-in-out;
+
+  img {
+    transform: rotateY(170deg);
+  }
+}
+
+.birthday-card:hover {
+  .cover-outer {
+    transform: perspective(800px) rotateY(-170deg);
+  }
+  .cover-inner {
+    transform: perspective(800px) rotateY(200deg);
+    box-shadow: 7px 0 5px 0 rgba(0, 0, 0, 0.3),
+    inset 2px 0px 15px 0px rgba(0, 0, 0, 0.1);
+  }
+}
+
+
+
+@media (max-width: 600px) {
+  body {
+    max-height: 600px;
+  }
+
+  #heading {
+    font-size: 1.6rem;
+  }
+
+  .birthday-card {
+    max-width: 500px;
+    left: 120px;
+    margin-right: 60px;
+  }
+
+  .button { 
+    left: 36%;
+  }
+}
+
+  button {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: -50px;
+    left: 44%;
+    background-color: rgb(231, 58, 58);
+    padding: 10px;
+    color: antiquewhite;
+    border: none;
+    width: 150px;
+    border-radius: 200px;
+    font-family: 'Bodoni Moda', serif;
+    font-size: 1.1em;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation-name: moveInRight;
+    animation-timing-function: ease-out;
+    animation-duration: infinite;
+    animation-delay: 15s;
+    animation-fill-mode: backwards;
+  } 
+  @keyframes moveInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(100px);
+    }
+  
+    80% {
+      transform: translateX(-10px);
+    }
+  
+    100% {
+      opacity: 100;
+      transform: translateX(0);
+    }
+  }
+ 
+  button:hover {
+  transform: scale(1.1); /* Grows on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  

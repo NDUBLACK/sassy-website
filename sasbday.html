@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Sassy</title>
+  <link rel="stylesheet" href="sasbday.css">
+  <link rel="icon" href="img/favicon.png" type="image">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script src="sasbday.js"></script>
+</head>
+
+<body>
+ <!-- Confetti Container -->
+ <canvas class="confetti-canvas"></canvas>
+ <script>
+  // Trigger confetti on page load
+  window.onload = () => {
+      const confettiCanvas = confetti.create(null, { resize: true });
+      const confettiDuration = 3000; // Total duration of confetti in milliseconds (3 seconds)
+      const fadeDuration = 2000;    // Fade-out duration (2 seconds)
+      const end = Date.now() + confettiDuration;
+
+      // Create the confetti animation
+      (function frame() {
+        confettiCanvas({
+          particleCount: 50,
+          startVelocity: 30,
+          spread: 360,
+          origin: { x: Math.random(), y: Math.random() - 0.2 },
+          colors: ['#bb0000', '#ffffff', '#ffbb00', '#00bb00', '#0000bb'],
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        } else {
+          // Gradually fade out the canvas and confetti
+          let opacity = 1;
+          const fadeOutInterval = setInterval(() => {
+            opacity -= 0.02;  // Reduce opacity
+            if (opacity <= 0) {
+              clearInterval(fadeOutInterval);  // Stop when fully faded
+            }
+            const canvas = document.querySelector("canvas");
+            canvas.style.opacity = opacity;
+          }, 50);  // Every 50ms decrease opacity
+        }
+      })();
+    };
+ </script>
+
+ <div class="overlay" id="overlay">
+  <h1>Click to bring the lights to life 😊</h1>
+</div>
+<script>
+  // Overlay element
+  const overlay = document.getElementById('overlay');
+
+  // Add click event to overlay
+  overlay.addEventListener('click', () => {
+      // Remove overlay
+      overlay.style.display = 'none';
+
+      // Play audio
+      const audio = new Audio('audio/happy-birthday-music.mp3'); 
+      audio.play().catch(error => {
+          console.error("Audio playback failed:", error);
+      });
+  });
+</script>
+
+<h1 id="heading"></h1>
+<script>
+  var messageArray = ["HAPPY BIRTHDAY ESEOSA! 🥳❤️"];
+  var textPosition = 0;
+  var speed = 100;
+
+  typewriter = () => {
+    document.querySelector("#heading").
+    innerHTML = messageArray[0].substring(0, textPosition) + "<span id='blinker'>\u25ae</span>";
+
+    if (textPosition++ != messageArray[0].length)
+    {setTimeout(typewriter, 200); //Adjust typing speed here
+    } else {
+      setTimeout(() => {
+        document.getElementById("blinker").remove(); // Remove blinker
+        showBirthdayCard(); // Show card after typewriter effect
+      }, 3000);
+    }
+ };
+
+ // This adds a delay of 5 seconds before the typing effect starts
+ window.addEventListener("load", () => {
+    setTimeout(typewriter, 5000);
+  });
+</script>
+
+<div class="birthday-card">
+  <!--Innercover-->
+  <div class="cover-inner">
+    <img src="./img/bdaycard3.jpg" width="100%"> 
+  </div>
+
+  <!--Outercover--> 
+  <div class="cover-outer">
+    <img src="./img/bdaycard2.webp" width="100%"> 
+  </div>
+
+  <!--Text-->
+  <div class="text">
+    <p class="title">
+      Happy Birthday! <br> Sassy 🎉
+    </p>
+    <p>
+    I wanted to just send you a message on WhatsApp and that is it. But, on a second thought, I said to myself, "Eseosa is more special to me than that". So, I decided to make this for you. I spent a lot of time on this and I hope that you love and appreciate it. 
+    </p>
+    <p>
+      I hope this new year brings you a lot of happiness, joy and peace. You deserve it. <br>Love you! 💓
+    </p>
+  </div>
+</div>
+
+<div>
+  <a href="gamesbday.html" target="_blank" class="games"><button>Play games here!</button></a>
+</div>
+</body>
+
+</html>
